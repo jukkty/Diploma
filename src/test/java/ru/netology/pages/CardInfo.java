@@ -14,8 +14,8 @@ public class CardInfo {
     private final SelenideElement cardOwner = $("#root > div > form > fieldset > div:nth-child(3) > span > span:nth-child(1) > span > span > span.input__box > input");
     private final SelenideElement cardCVC = $("input[type=text][placeholder='999']");
     private final SelenideElement buttonNext = $(byText("Продолжить"));
-    private final SelenideElement notificationError = $("#root > div > div.notification.notification_visible.notification_status_error.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white");
-    private final SelenideElement notificationSuccess = $("#root > div > div.notification.notification_visible.notification_status_ok.notification_has-closer.notification_stick-to_right.notification_theme_alfa-on-white");
+    private final SelenideElement notificationError = $(".notification_status_error");
+    private final SelenideElement notificationSuccess = $(".notification_status_ok");
 
     public void InputInfo(DataHelper.PaymentInfo paymentInfo) {
         cardNumber.setValue(paymentInfo.getCardNumber());
