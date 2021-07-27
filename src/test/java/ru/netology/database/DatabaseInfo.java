@@ -9,13 +9,12 @@ import java.sql.SQLException;
 public class DatabaseInfo {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
-
-
+//        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/app", "app", "pass");
     }
 
     public static String getPaymentId() throws SQLException {
         String paymentId = null;
-        val idSQL = "select payment_id from app.order_entity order by created desc limit 1 ";
+        val idSQL = "select payment_id from order_entity order by created desc limit 1 ";
         try (val conn = getConnection();
              val statusStatement = conn.prepareStatement(idSQL)) {
             try (val rs = statusStatement.executeQuery()) {
@@ -30,7 +29,7 @@ public class DatabaseInfo {
 
     public static String getStatusFromCredit(String paymentId) throws SQLException {
         String status = null;
-        val statusSQL = "select status from app.credit_request_entity where bank_id =? ";
+        val statusSQL = "select status from credit_request_entity where bank_id =? ";
         try (val conn = getConnection();
              val statusStatement = conn.prepareStatement(statusSQL)) {
             statusStatement.setString(1, paymentId);
@@ -45,7 +44,7 @@ public class DatabaseInfo {
 
     public static String getStatusFromDebit(String paymentId) throws SQLException {
         String status = null;
-        val statusSQL = "select status from app.payment_entity where transaction_id =?";
+        val statusSQL = "select status from payment_entity where transaction_id =?";
         try (val conn = getConnection();
              val statusStatement = conn.prepareStatement(statusSQL)) {
             statusStatement.setString(1, paymentId);
@@ -60,7 +59,7 @@ public class DatabaseInfo {
 
     public static String getAmount(String paymentId) throws SQLException {
         String amount = null;
-        val amountSQL = "select amount from app.payment_entity where transaction_id =?";
+        val amountSQL = "select amount from payment_entity where transaction_id =?";
         try (val conn = getConnection();
              val amountStatement = conn.prepareStatement(amountSQL)) {
             amountStatement.setString(1, paymentId);
@@ -74,9 +73,9 @@ public class DatabaseInfo {
     }
 
     public static void cleanDB() {
-        val deleteOrdersEntity = "delete from app.order_entity;";
-        val deleteCreditRequests = "delete from app.credit_request_entity;";
-        val deletePaymentRequests = "delete from app.payment_entity;";
+        val deleteOrdersEntity = "delete from order_entity;";
+        val deleteCreditRequests = "delete from credit_request_entity;";
+        val deletePaymentRequests = "delete from payment_entity;";
 
         try (val conn = getConnection();
              val deleteOrdersSt = conn.createStatement();

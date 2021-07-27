@@ -11,11 +11,6 @@ services:
       - MYSQL_DATABASE=app
       - MYSQL_USER=app
       - MYSQL_PASSWORD=pass
-  node-app:
-    build: artifacts/gate-simulator
-    image: node:10-alpine
-    ports:
-    - '9999:9999'
   postgresdb:
     image: postgres
     environment:
@@ -24,4 +19,8 @@ services:
       - POSTGRES_PASSWORD=pass
     ports:
       - '5432:5432'
-
+  node-app:
+    build: artifacts/gate-simulator
+    image: node:10-alpine
+    ports:
+      - '9999:9999'
