@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Tests {
 
     @BeforeAll
-    static void setUpAll(){
+    static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
@@ -30,7 +30,6 @@ public class Tests {
         DatabaseInfo.cleanDB();
         SelenideLogger.removeListener("allure");
     }
-
 
     @Test
     @DisplayName("should book for credit cards with approved status")
