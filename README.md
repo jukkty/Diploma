@@ -7,3 +7,8 @@
 `java -Dspring.datasource.url=jdbc:postgresql://localhost:5432/app -jar artifacts/aqa-shop.jar`
 ### Чтобы произошло соединение с нужной БД : 
 В файле DatabaseInfo.java в строках 11 и 12 выбрать нужную БД и раскоментить ее
+### Отчетная документация :
+
+1. [План автоматизации](/documentation/Plan.md)
+1. [Отчет по итогам автоматизированного тестирования](/documentation/Report.md)
+1. [Итоговый отчет по автоматизации](/documentation/Summary.md)
